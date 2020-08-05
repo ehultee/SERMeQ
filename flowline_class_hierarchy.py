@@ -990,9 +990,9 @@ class PlasticNetwork(Ice):
             key = round(yr-dt, dt_rounding) #allows dictionary referencing when dt is < 1 a
             
             if k<1:
-                dLdt_annum = ref_line.dLdt_dimensional(profile=refdict[0], alpha_dot=alpha_dot_k, debug_mode=debug_mode, dL=dL, has_smb=has_smb, terminus_balance=terminus_balance, submarine_melt=submarine_melt, rate_factor=rate_factor)
+                dLdt_annum = np.squeeze(ref_line.dLdt_dimensional(profile=refdict[0], alpha_dot=alpha_dot_k, debug_mode=debug_mode, dL=dL, has_smb=has_smb, terminus_balance=terminus_balance, submarine_melt=submarine_melt, rate_factor=rate_factor))
             else:
-                dLdt_annum = ref_line.dLdt_dimensional(profile=refdict[key], alpha_dot=alpha_dot_k, debug_mode=debug_mode, dL=dL, has_smb=has_smb, terminus_balance=terminus_balance, submarine_melt=submarine_melt, rate_factor=rate_factor)
+                dLdt_annum = np.squeeze(ref_line.dLdt_dimensional(profile=refdict[key], alpha_dot=alpha_dot_k, debug_mode=debug_mode, dL=dL, has_smb=has_smb, terminus_balance=terminus_balance, submarine_melt=submarine_melt, rate_factor=rate_factor))
             if np.isnan(dLdt_annum): #happens if retreat hits edge of domain unexpectedly
                 dLdt_annum = refdict['Termrates'][-1] / dt #replace with last non-nan value
             else:
