@@ -954,7 +954,7 @@ class PlasticNetwork(Ice):
         if separation_buffer is None:
             separation_buffer_default = 5000/self.L0
         
-        dt = round(mean(diff(testyears)), dt_rounding) #size of time step, rounded to number of digits specified by dt_rounding
+        dt = mean(diff(testyears)) #size of time step, rounded to number of digits specified by dt_rounding
         
         model_output_dicts = [{'Termini': [0],
         'Terminus_heights': [fl.surface_function(0)],
